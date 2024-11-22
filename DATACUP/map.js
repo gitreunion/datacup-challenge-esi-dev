@@ -6,13 +6,16 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// Charger les données des stations via l'API
+// Variable pour stocker les graphiques actifs
+const activeCharts = {};
+
 // Charger les données des stations via l'API
 fetch('http://localhost:3000/stations')
   .then(response => response.json())
   .then(stations => {
     console.log('Données reçues depuis l\'API :', stations);
 
+    // Attacher un événement pour afficher les marqueurs uniquement lorsque "Dioxyde de Soufre" est sélectionné
     document.querySelectorAll('#gas-list li').forEach(item => {
       item.addEventListener('click', () => {
         const selectedGas = item.textContent;
@@ -25,14 +28,24 @@ fetch('http://localhost:3000/stations')
           }
         });
 
+        // Vérifier si le gaz sélectionné est "Dioxyde de Soufre"
+        // if (selectedGas !== 'Dioxyde de Soufre') {
+        //   console.log('Aucune action pour ce gaz.');
+        //   return;
+        // }
+
         // Filtrer les stations correspondant au gaz sélectionné
         const filteredStations = stations.filter(station => station.gas === selectedGas);
         console.log('Stations filtrées :', filteredStations);
 
+        // if (filteredStations.length === 0) {
+        //   console.log('Aucune station pour ce gaz.');
+        // }
+
+        // Ajouter les marqueurs pour les stations filtrées
         filteredStations.forEach(station => {
           if (station.lat && station.lng) {
             const chartId = `chart-${station.id}`;
-
             const popupContent = `
               <div>
                 <h3>${station.name}</h3>
@@ -42,28 +55,20 @@ fetch('http://localhost:3000/stations')
                 <canvas id="${chartId}" width="400" height="200"></canvas>
               </div>
             `;
-
+        
             const marker = L.marker([station.lng, station.lat])
               .addTo(map)
               .bindPopup(popupContent);
-
+        
             // Charger les données pour le graphique au clic sur le marqueur
             marker.on('popupopen', () => {
-              setTimeout(() => { // Assure que le DOM est prêt
-                const canvas = document.getElementById(chartId);
-                if (!canvas) {
-                  console.error(`Canvas introuvable pour l'ID ${chartId}`);
-                  return;
-                }
-
-                fetch(`http://localhost:3000/station-history?nom_station=${encodeURIComponent(station.name)}`)
-                  .then(response => response.json())
-                  .then(data => {
-                    console.log(`Données historiques pour ${station.name} :`, data);
-                    generateChart(chartId, data); // Générer le graphique
-                  })
-                  .catch(error => console.error('Erreur lors du chargement des données du graphique :', error));
-              }, 10);
+              fetch(`http://localhost:3000/station-history?nom_station=${encodeURIComponent(station.name)}`)
+                .then(response => response.json())
+                .then(data => {
+                  console.log(`Données historiques pour ${station.name} :`, data);
+                  generateChart(chartId, data); // Générer le graphique
+                })
+                .catch(error => console.error('Erreur lors du chargement des données du graphique :', error));
             });
           }
         });
@@ -74,22 +79,17 @@ fetch('http://localhost:3000/stations')
 
 // Fonction pour générer le graphique
 function generateChart(canvasId, data) {
-  const canvas = document.getElementById(canvasId);
-  
-  // Supprime l'ancien graphique s'il existe
-  if (canvas.chartInstance) {
-    canvas.chartInstance.destroy();
+  // Vérifier si un graphique existe déjà pour ce canvas
+  if (activeCharts[canvasId]) {
+    activeCharts[canvasId].destroy(); // Détruire l'ancien graphique
   }
 
-  // Prépare le contexte du canvas
-  const ctx = canvas.getContext('2d');
-  
-  // Extraire les labels et les données
+  const ctx = document.getElementById(canvasId).getContext('2d');
   const labels = data.map(entry => entry.date);
   const concentrations = data.map(entry => entry.concentration);
 
-  // Crée un nouveau graphique
-  const newChart = new Chart(ctx, {
+  // Créer le nouveau graphique
+  activeCharts[canvasId] = new Chart(ctx, {
     type: 'line',
     data: {
       labels,
@@ -115,7 +115,4 @@ function generateChart(canvasId, data) {
       }
     }
   });
-
-  // Attache l'instance du graphique au canvas pour une gestion future
-  canvas.chartInstance = newChart;
 }
