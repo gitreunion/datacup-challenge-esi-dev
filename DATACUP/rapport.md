@@ -25,5 +25,5 @@ On utilise l'API initialement pour peupler notre base de donnée mariadb local. 
 
 On utilise ensuite Node.js comme interface entre notre base de données et le serveur python (http.server) qui délivre notre frontend. C'est au travers des endpoints définit dans notre server node.js qu'on fait les requetes SQL vers notre base de donnée.
 
-Le server python et le node.js tournent localement sur les port 8000 et 3000 respectivement
+Le server python et le node.js tournent localement sur les ports 8000 et 3000 respectivement
 
