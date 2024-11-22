@@ -15,7 +15,7 @@ Afin de récupérer les données des points que nous allons afficher sur notre c
 ```
 https://data-atmoreunion.opendata.arcgis.com/datasets/fb7de41b80534777808df9212d78197f_0/api
 ```
-Les données sur l'API sont mises à jour tout les heures.
+Les données sur l'API sont mises à jour toutes les heures.
 
 ## La stack
 
@@ -29,6 +29,6 @@ On utilise ensuite Node.js comme interface entre notre base de données et le se
 
 
 ### Ports
-Le server python et le node.js tourne localement sur les port 8000 et 3000 respectivement
+Le server python et le node.js tournent localement sur les ports 8000 et 3000 respectivement
 
 
