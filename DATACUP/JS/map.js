@@ -6,40 +6,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-//Dashboard
-
-// const ctx = document.getElementById('myChart').getContext('2d');
-// const myChart = new Chart(ctx, {
-//     type: 'line', // Essaye aussi 'bar', 'pie', etc.
-//     data: {
-//         labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'],
-//         datasets: [{
-//             label: 'Nombre de visiteurs',
-//             data: [50, 60, 70, 180, 90],
-//             borderColor: 'rgba(75, 192, 192, 1)',
-//             backgroundColor: 'rgba(75, 192, 192, 0.2)',
-//             borderWidth: 2
-//         }]
-//     },
-//     options: {
-//         responsive: true,
-//         plugins: {
-//             legend: {
-//                 display: true,
-//             }
-//         },
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
-
-
-
-
-
 
 // Charger les données des stations via l'API
 fetch('http://localhost:3000/stations')
