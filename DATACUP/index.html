@@ -4,60 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Impact des émanations volcaniques</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="./CSS/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
-  <header>
+  <header class="app-header">
     <h1>Impact des émanations volcaniques</h1>
-    <div class="subtitle">Île de la Réunion</div>
+    <div class="legend-toggle">
+      <button id="legend-button">Légende</button>
+    </div>
   </header>
-  <main>
-    <!-- Panneau latéral -->
-    <div id="side-panel">
-      <h2>Filtres</h2>
-      <ul id="gas-list">
-        <li>Dioxyde de soufre</li>
-        <!--<li>Monoxyde d'azote</li> -->
-        <!--<li>Particules PM10</li> -->
-        <!-- <li>Ozone (O3)</li> -->
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Liste des points</h2>
+      <ul id="points-list">
+        <!-- Les sites seront générés dynamiquement -->
       </ul>
-    </div>
-    <!-- Conteneur de la carte -->
-    <div id="map-container">
+    </aside>
+
+    <!-- Carte -->
+    <section class="map-section">
       <div id="map"></div>
-    </div>
-  </main>
+      <div id="legend-menu" class="legend-menu hidden">
+        <h3>Légende</h3>
+        <ul>
+          <li>😊 Content : Données récentes (moins d'1h)</li>
+          <li>😑 Moyennement content : Données > 1 journée</li>
+          <li>😡 Pas content : Données > 1 semaine</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="dashboard">
+      <h2>Dashboard</h2>
+      <div class="dashboard-content">
+        <div class="station-info">
+          <h3 id="station-name">Station</h3>
+          <p id="station-status">Status: -</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./JS/map.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
