@@ -38,7 +38,7 @@ app.get('/stations', (req, res) => {
 app.get('/station-history', (req, res) => {
   const stationName = req.query.nom_station; // Nom de la station passé en paramètre
   const query = `
-    SELECT concentration, DATE(timestamp) AS date
+    SELECT concentration, timestamp AS date
     FROM pollution_data
     WHERE nom_station = ? AND timestamp >= DATE_SUB(NOW(), INTERVAL 3 DAY)
     ORDER BY timestamp DESC

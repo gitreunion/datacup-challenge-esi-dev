@@ -66,10 +66,7 @@ fetch('http://localhost:3000/stations')
 
               // Charger les données pour le graphique
               fetch(`http://localhost:3000/station-history?nom_station=${encodeURIComponent(station.name)}`)
-                .then(response => {
-                  response.json();
-                  console.log('Données pour le graphique :', response);
-            })
+                .then(response => response.json())
                 .then(data => {
                   console.log(`Données historiques pour ${station.name} :`, data);
                   generateChart('dashboard-chart', data); // Générer le graphique dans le dashboard
@@ -97,9 +94,26 @@ function generateChart(canvasId, data) {
 
   // Inverser les données pour que les timestamps les plus récents soient à droite
   const reversedData = data.reverse();
-  const labels = reversedData.map(entry => entry.date);
-  const concentrations = reversedData.map(entry => entry.concentration);
-  console.log(reversedData);
+  // Inverser les données pour que les timestamps les plus récents soient à droite
+  const labels = reversedData.map(entry => {
+    // Créer un objet Date à partir de la date de l'entrée
+    const date = new Date(entry.date);
+  
+    // Retirer 4 heures si le décalage a déjà été appliqué (double UTC+4)
+    date.setHours(date.getHours() - 4);
+  
+    // Formater la date correctement en "jour/mois/année heure:minute"
+    return date.toLocaleString('fr-FR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  });
+  
+  const concentrations = data.map(entry => entry.concentration < 0 ? 0 : entry.concentration); // Remplacer les négatifs par 0
+
   // Créer le nouveau graphique
   activeCharts[canvasId] = new Chart(document.getElementById(canvasId).getContext('2d'), {
     type: 'line',
@@ -122,10 +136,29 @@ function generateChart(canvasId, data) {
         }
       },
       scales: {
+        x: {
+          ticks: {
+            maxTicksLimit: 8, // Limite le nombre de ticks affichés
+          },
+          title: {
+            display: true,
+            text: 'Date et Heure'
+          }
+        },
         y: {
-          beginAtZero: true
+          // beginAtZero: true,
+          min: 0, // Minimum de l'axe des Y
+          max: 10, // Maximum de l'axe des Y
+          ticks: {
+              stepSize: 1 // Incréments entre les valeurs de l'axe
+          },
+          title: {
+            display: true,
+            text: 'Concentration'
+          }
         }
       }
     }
   });
 }
+
