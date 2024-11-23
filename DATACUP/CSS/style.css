@@ -1,0 +1,334 @@
+/* Général */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: black;
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* En-tête */
+.app-header {
+  display: flex;
+  justify-content: space-between; /* Espace entre les éléments */
+  align-items: center;
+  padding: none 1vh;
+  background-color: white;
+  color: #2f4ba3;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid #3E5060;
+}
+
+/* Logo */
+.logo {
+  flex: 0; /* Pas de flexibilité pour le logo */
+}
+
+.app-logo {
+  font-family: 'Cursive', sans-serif;
+  font-size: 2.2rem;
+  color: #FF4C4C;
+  font-weight: bold;
+  margin-right: 2vh;
+  width: 10vh;
+}
+
+/* Titre principal */
+.app-header h1 {
+  font-family: 'Segoe UI Bold', sans-serif; /* Titre principal */
+  flex: 1; /* Le texte prend toute la largeur restante */
+  text-align: center; /* Centre le texte horizontalement */
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* Bouton "S'inscrire" */
+.sign-up-toggle button {
+  background: linear-gradient(90deg, #d6e373, #f0f8c2);
+  border: 1px solid #483D8B;
+  padding: 1.5vh 2vh;
+  color: black;
+  font-size: 2vh;
+  border-radius: 0.5vh;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.sign-up-toggle button:hover {
+  background: linear-gradient(45deg, #483D8B, #6A5ACD);
+  transform: scale(1.05);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Modal pour le formulaire */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40vh; /* Largeur relative */
+  background-color: #2D3E50;
+  color: white;
+  padding: 5vh;
+  border-radius: 1vh;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  display: none; /* Masqué par défaut */
+  z-index: 1000;
+}
+
+.modal.visible {
+  display: flex; /* Affiche le modal lorsqu'il est visible */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 40vh; /* Ne dépasse pas 40vh */
+  text-align: center;
+}
+
+.modal-content h2 {
+  font-size: 3vh;
+  margin-bottom: 3vh;
+  color: #FF6B6B;
+}
+
+/* Champs de saisie centrés */
+.modal-content form input {
+  width: 90%; /* Ne dépasse pas les bordures */
+  padding: 1.5vh;
+  margin: 1.5vh 0;
+  font-size: 1.8vh;
+  border: 1px solid #3E5060;
+  border-radius: 0.5vh;
+  background-color: #3E5060;
+  color: white;
+}
+
+.modal-content .form-submit {
+  width: 90%; /* Même largeur que les champs */
+  padding: 2vh;
+  font-size: 2vh;
+  background: linear-gradient(45deg, #FF6B6B, #FF4C4C);
+  border: none;
+  border-radius: 0.5vh;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.modal-content form label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.modal-content .form-submit:hover {
+  background: linear-gradient(45deg, #FF4C4C, #FF1E1E);
+  transform: scale(1.05);
+}
+
+.modal-content .close-modal {
+  margin-top: 2vh;
+  background: transparent;
+  color: #FF4C4C;
+  border: none;
+  font-size: 1.8vh;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.modal-content .close-modal:hover {
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+/* Boutons actifs */
+#gas-list button.active {
+  background: linear-gradient(45deg, #FF4C4C, #FF6B6B);
+  border: 1px solid #FF4C4C;
+  color: #FFF;
+}
+
+/* Mise en page principale */
+.app-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 1fr auto;
+  height: calc(100vh - 60px); /* Ajuste la hauteur pour inclure l'en-tête */
+  gap: 10px;
+  overflow: hidden; /* Évite les débordements */
+}
+
+/* Carte */
+.map-section {
+  position: relative;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  overflow: hidden;
+  border: 2px solid #3E5060;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex; /* Permet à la carte de remplir l'espace */
+}
+
+#map {
+  flex: 1; /* La carte occupe tout l'espace disponible */
+  height: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #5C758C;
+  font-family: 'Roboto', sans-serif; /* Alternative moderne */
+  padding: 15px;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  color: white;
+  overflow-y: auto;
+  border: 2px solid #3E5060;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #3E5060;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  color: #FF6B6B;
+}
+
+#gas-list button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #3E5060;
+  border: 1px solid #2D3E50;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+}
+
+#gas-list button:hover {
+  background-color: #FF4C4C;
+  transform: translateX(5px);
+}
+
+/* Tableau de bord */
+.dashboard {
+  background-color: #5C758C;
+  color: white;
+  padding: 15px;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  border: 2px solid #3E5060;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+.dashboard h2 {
+  font-size: 1.4rem;
+  margin: 0 0 15px;
+  text-transform: uppercase;
+  color: #FF6B6B;
+}
+
+.dashboard-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.chart-container {
+  flex: 2;
+  background-color: white;
+  padding: 1vh;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #2D3E50;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.station-info {
+  flex: 1;
+  background-color: white;
+  padding: 1vh;
+  border-radius: 8px;
+  border: 1px solid #2D3E50;
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.station-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #5C758C;
+}
+
+.station-info p, li{
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: black;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .app-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sidebar {
+    order: 1;
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  #gas-list button {
+    min-width: 120px;
+    text-align: center;
+  }
+
+  .map-section {
+    order: 2;
+    height: calc(100vh - 300px); /* Ajuste pour éviter les débordements */
+  }
+
+  .dashboard {
+    order: 3;
+  }
+}
+

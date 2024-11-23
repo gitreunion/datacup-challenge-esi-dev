@@ -4,59 +4,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Impact des émanations volcaniques</title>
+  <link rel="stylesheet" href="./CSS/style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
+  <header class="app-header">
+    <div class="logo">
+      <img src="./images/logo2.png" alt="ATMO Logo" class="app-logo">
+    </div>
     <h1>Impact des émanations volcaniques</h1>
-    <div class="subtitle">Île de la Réunion</div>
+    <div class="sign-up-toggle">
+      <button id="sign-up-button">S'inscrire</button>
+    </div>
   </header>
-  <main>
-    <!-- Panneau latéral -->
-    <div id="side-panel">
-      <h2>Filtres</h2>
-      <ul id="gas-list">
-        <li>Dioxyde de soufre</li>
-        <li>Monoxyde d'azote</li>
-        <li>Particules PM10</li>
-        <li>Ozone (O3)</li>
-      </ul>
-    </div>
-    <!-- Conteneur de la carte -->
-    <div id="map-container">
+  
+  <!-- Section pour le formulaire d'inscription -->
+  <div id="sign-up-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>S'inscrire</h2>
+      <form id="sign-up-form">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" placeholder="Entrez votre nom" required>
+        
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+        
+        <button type="submit" class="form-submit">S'inscrire</button>
+      </form>
+      <button id="close-modal" class="close-modal">Fermer</button>
+    </div> 
+  </div>
+  
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div id="side-panel">
+        <h2>Filtres</h2>
+        <ul id="gas-list">
+          <button>Dioxyde de soufre</button>
+          <!-- <li><button>Monoxyde d'azote</button></li> -->
+          <!-- <li><button>Particules PM10</button></li> -->
+          <!-- <li><button>Ozone (O3)</button></li> -->
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Carte -->
+    <section class="map-section">
       <div id="map"></div>
-    </div>
-  </main>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="dashboard">
+      <h2>Tableau de bord</h2>
+      <div class="dashboard-content">
+        <div class="chart-container">
+          <canvas id="dashboard-chart" width="20%" height="5%"></canvas>
+        </div>
+        <div class="station-info">
+          <h3 id="station-name">Station</h3>
+          <!-- <p id="station-lat">Latitude: </p>
+          <p id="station-lng">Longitude: </p> -->
+          <p id="station-typologie">Typologie : </p>
+          <p id="station-concentration">Concentration actuelle: </p>
+          <p id="station-S1">Seuil d'information : </p>
+          <p id="station-S2">Seuil de danger:  </p>
+          
+          <h3>Etat de la station</h3>
+          <ul id="etat">
+            <li id="legend-item-1"> <img src="./images/vert.png" width="50px"> : Pas d'alerte</li>
+            <li id="legend-item-2"> <img src="./images/orange.png" width="50px"> : Seuil de recommandation dépassé</li>
+            <li id="legend-item-3"> <img src="./images/rouge.png" width="50px"> : Seuil d'alerte dépassé</li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="map.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+  <script src="./JS/map.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
