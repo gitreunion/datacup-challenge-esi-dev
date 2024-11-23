@@ -71,7 +71,7 @@ Créer une **page web interactive** avec :
 
 - Respect des technologies maitrisées par le porteur de projet (API rest arcgis, Maria DB)
 - Respect de la charte graphique imposé par le porteur de projet
-- Facilité d'installation (venv, node_package)
+- Facilité d'installation (venv, node_module, INSTALL.md)
 
 
 ---
