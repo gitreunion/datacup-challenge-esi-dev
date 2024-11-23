@@ -66,7 +66,10 @@ fetch('http://localhost:3000/stations')
 
               // Charger les données pour le graphique
               fetch(`http://localhost:3000/station-history?nom_station=${encodeURIComponent(station.name)}`)
-                .then(response => response.json())
+                .then(response => {
+                  response.json();
+                  console.log('Données pour le graphique :', response);
+            })
                 .then(data => {
                   console.log(`Données historiques pour ${station.name} :`, data);
                   generateChart('dashboard-chart', data); // Générer le graphique dans le dashboard
@@ -92,12 +95,13 @@ function generateChart(canvasId, data) {
     activeCharts[canvasId].destroy(); // Détruire l'ancien graphique
   }
 
-  const ctx = document.getElementById(canvasId).getContext('2d');
-  const labels = data.map(entry => entry.date);
-  const concentrations = data.map(entry => entry.concentration);
-
+  // Inverser les données pour que les timestamps les plus récents soient à droite
+  const reversedData = data.reverse();
+  const labels = reversedData.map(entry => entry.date);
+  const concentrations = reversedData.map(entry => entry.concentration);
+  console.log(reversedData);
   // Créer le nouveau graphique
-  activeCharts[canvasId] = new Chart(ctx, {
+  activeCharts[canvasId] = new Chart(document.getElementById(canvasId).getContext('2d'), {
     type: 'line',
     data: {
       labels,
