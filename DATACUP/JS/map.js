@@ -9,12 +9,34 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Variable pour stocker les graphiques actifs
 const activeCharts = {};
 
-// Gérer le menu déroulant de la légende
-const legendButton = document.getElementById('legend-button');
-const legendMenu = document.getElementById('legend-menu');
+// Gérer le formulaire "S'inscrire"
+const signUpButton = document.getElementById('sign-up-button');
+const signUpModal = document.getElementById('sign-up-modal');
+const closeModalButton = document.getElementById('close-modal');
 
-legendButton.addEventListener('click', () => {
-  legendMenu.classList.toggle('visible');
+// Ouvrir le formulaire d'inscription
+signUpButton.addEventListener('click', () => {
+  signUpModal.classList.add('visible');
+});
+
+// Fermer le formulaire d'inscription
+closeModalButton.addEventListener('click', () => {
+  signUpModal.classList.remove('visible');
+});
+
+// Soumettre le formulaire
+const signUpForm = document.getElementById('sign-up-form');
+signUpForm.addEventListener('submit', (event) => {
+  event.preventDefault(); // Empêcher le rechargement de la page
+  const formData = new FormData(signUpForm);
+  const name = formData.get('name');
+  const email = formData.get('email');
+
+  console.log(`Nom: ${name}, Email: ${email}`);
+  alert(`Merci pour votre inscription, ${name} !`);
+
+  // Fermer le modal après la soumission
+  signUpModal.classList.remove('visible');
 });
 
 // Charger les données des stations via l'API
@@ -73,11 +95,6 @@ fetch('http://localhost:3000/stations')
                 })
                 .catch(error => console.error('Erreur lors du chargement des données du graphique :', error));
             });
-
-            // Ajouter un écouteur d'événement pour afficher le popup lors du clic sur un élément de la légende
-            document.getElementById('legend-item-1').addEventListener('click', () => {
-              marker.openPopup();
-            });
           }
         });
       });
@@ -94,15 +111,9 @@ function generateChart(canvasId, data) {
 
   // Inverser les données pour que les timestamps les plus récents soient à droite
   const reversedData = data.reverse();
-  // Inverser les données pour que les timestamps les plus récents soient à droite
   const labels = reversedData.map(entry => {
-    // Créer un objet Date à partir de la date de l'entrée
     const date = new Date(entry.date);
-  
-    // Retirer 4 heures si le décalage a déjà été appliqué (double UTC+4)
-    date.setHours(date.getHours() - 4);
-  
-    // Formater la date correctement en "jour/mois/année heure:minute"
+    date.setHours(date.getHours() - 4); // Ajuster le décalage horaire si nécessaire
     return date.toLocaleString('fr-FR', {
       day: '2-digit',
       month: '2-digit',
@@ -111,13 +122,11 @@ function generateChart(canvasId, data) {
       minute: '2-digit'
     });
   });
-  
-  const concentrations = data.map(entry => entry.concentration < 0 ? 0 : entry.concentration); // Remplacer les négatifs par 0
-  // Trouver la valeur maximale des concentrations
-  const maxConcentration = Math.max(...concentrations);
 
-  // Définir le maximum de l'axe Y : 10 par défaut, sinon la valeur maximale
+  const concentrations = data.map(entry => entry.concentration < 0 ? 0 : entry.concentration); // Remplacer les négatifs par 0
+  const maxConcentration = Math.max(...concentrations);
   const yMax = maxConcentration > 10 ? maxConcentration : 10;
+
   // Créer le nouveau graphique
   activeCharts[canvasId] = new Chart(document.getElementById(canvasId).getContext('2d'), {
     type: 'line',
@@ -133,7 +142,7 @@ function generateChart(canvasId, data) {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false, // Permet au canvas de s'adapter à son conteneur
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           display: true
@@ -142,7 +151,7 @@ function generateChart(canvasId, data) {
       scales: {
         x: {
           ticks: {
-            maxTicksLimit: 8, // Limite le nombre de ticks affichés
+            maxTicksLimit: 8
           },
           title: {
             display: true,
@@ -150,11 +159,10 @@ function generateChart(canvasId, data) {
           }
         },
         y: {
-          // beginAtZero: true,
-          min: 0, // Minimum de l'axe des Y
-          max: yMax + 0.1*yMax, // Maximum dynamique basé sur la concentration maximale
+          min: 0,
+          max: yMax + 0.1 * yMax,
           ticks: {
-              stepSize: yMax > 10 ? Math.ceil(yMax / 10) : 1 // Ajuster l'incrément si la concentration dépasse 10
+            stepSize: yMax > 10 ? Math.ceil(yMax / 10) : 1
           },
           title: {
             display: true,
@@ -165,4 +173,3 @@ function generateChart(canvasId, data) {
     }
   });
 }
-

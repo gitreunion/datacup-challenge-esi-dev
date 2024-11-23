@@ -1,8 +1,8 @@
 /* Général */
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #1B2430;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: black;
   color: white;
   height: 100vh;
   display: flex;
@@ -14,9 +14,9 @@ body {
   display: flex;
   justify-content: space-between; /* Espace entre les éléments */
   align-items: center;
-  padding: 10px 20px;
-  background-color: #2D3E50;
-  color: white;
+  padding: none 1vh;
+  background-color: white;
+  color: #2f4ba3;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
   border-bottom: 2px solid #3E5060;
 }
@@ -31,11 +31,13 @@ body {
   font-size: 2.2rem;
   color: #FF4C4C;
   font-weight: bold;
-  margin-right: 20px;
+  margin-right: 2vh;
+  width: 10vh;
 }
 
 /* Titre principal */
 .app-header h1 {
+  font-family: 'Segoe UI Bold', sans-serif; /* Titre principal */
   flex: 1; /* Le texte prend toute la largeur restante */
   text-align: center; /* Centre le texte horizontalement */
   margin: 0;
@@ -43,28 +45,113 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Bouton légende */
-.legend-toggle {
-  flex: 0; /* Pas de flexibilité pour le bouton */
-}
-
-.legend-toggle button {
-  background: linear-gradient(45deg, #FF6B6B, #FF4C4C);
-  border: 1px solid #D43F3F;
-  padding: 10px 15px;
-  color: white;
-  font-size: 1rem;
-  border-radius: 5px;
+/* Bouton "S'inscrire" */
+.sign-up-toggle button {
+  background: linear-gradient(90deg, #d6e373, #f0f8c2);
+  border: 1px solid #483D8B;
+  padding: 1.5vh 2vh;
+  color: black;
+  font-size: 2vh;
+  border-radius: 0.5vh;
   cursor: pointer;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
-.legend-toggle button:hover {
-  background: linear-gradient(45deg, #FF4C4C, #FF1E1E);
+.sign-up-toggle button:hover {
+  background: linear-gradient(45deg, #483D8B, #6A5ACD);
   transform: scale(1.05);
   box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4);
 }
+
+/* Modal pour le formulaire */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40vh; /* Largeur relative */
+  background-color: #2D3E50;
+  color: white;
+  padding: 5vh;
+  border-radius: 1vh;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  display: none; /* Masqué par défaut */
+  z-index: 1000;
+}
+
+.modal.visible {
+  display: flex; /* Affiche le modal lorsqu'il est visible */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 40vh; /* Ne dépasse pas 40vh */
+  text-align: center;
+}
+
+.modal-content h2 {
+  font-size: 3vh;
+  margin-bottom: 3vh;
+  color: #FF6B6B;
+}
+
+/* Champs de saisie centrés */
+.modal-content form input {
+  width: 90%; /* Ne dépasse pas les bordures */
+  padding: 1.5vh;
+  margin: 1.5vh 0;
+  font-size: 1.8vh;
+  border: 1px solid #3E5060;
+  border-radius: 0.5vh;
+  background-color: #3E5060;
+  color: white;
+}
+
+.modal-content .form-submit {
+  width: 90%; /* Même largeur que les champs */
+  padding: 2vh;
+  font-size: 2vh;
+  background: linear-gradient(45deg, #FF6B6B, #FF4C4C);
+  border: none;
+  border-radius: 0.5vh;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.modal-content form label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.modal-content .form-submit:hover {
+  background: linear-gradient(45deg, #FF4C4C, #FF1E1E);
+  transform: scale(1.05);
+}
+
+.modal-content .close-modal {
+  margin-top: 2vh;
+  background: transparent;
+  color: #FF4C4C;
+  border: none;
+  font-size: 1.8vh;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.modal-content .close-modal:hover {
+  text-decoration: none;
+}
+
+
+
+
 
 
 
@@ -104,7 +191,8 @@ body {
 
 /* Sidebar */
 .sidebar {
-  background-color: #2D3E50;
+  background-color: #5C758C;
+  font-family: 'Roboto', sans-serif; /* Alternative moderne */
   padding: 15px;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
@@ -146,14 +234,14 @@ body {
 
 /* Tableau de bord */
 .dashboard {
-  background-color: #2D3E50;
+  background-color: #5C758C;
   color: white;
   padding: 15px;
   grid-column: 1 / 3;
   grid-row: 2 / 3;
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 15h;
   border: 2px solid #3E5060;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -176,8 +264,8 @@ body {
 
 .chart-container {
   flex: 2;
-  background-color: #3E5060;
-  padding: 15px;
+  background-color: white;
+  padding: 1vh;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -192,8 +280,8 @@ body {
 
 .station-info {
   flex: 1;
-  background-color: #3E5060;
-  padding: 15px;
+  background-color: white;
+  padding: 1vh;
   border-radius: 8px;
   border: 1px solid #2D3E50;
   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -202,44 +290,13 @@ body {
 .station-info h3 {
   font-size: 1.2rem;
   margin-bottom: 10px;
-  color: #FF6B6B;
+  color: #5C758C;
 }
 
-/* Légende */
-.legend-menu {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: rgba(45, 62, 80, 0.95);
-  color: white;
-  padding: 15px;
-  border-radius: 8px;
-  display: none;
-  z-index: 1000;
-  border: 1px solid #3E5060;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
-}
-
-.legend-menu.visible {
-  display: block;
-}
-
-.legend-menu h3 {
-  margin: 0 0 10px;
-  text-transform: uppercase;
-  color: #FF6B6B;
-}
-
-.legend-menu li {
-  margin: 5px 0;
-  padding: 5px 10px;
-  background-color: #3E5060;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.legend-menu li:hover {
-  background-color: #FF4C4C;
+.station-info p, li{
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: black;
 }
 
 /* Responsiveness */
@@ -273,3 +330,4 @@ body {
     order: 3;
   }
 }
+

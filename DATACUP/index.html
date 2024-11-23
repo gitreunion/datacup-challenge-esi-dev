@@ -10,13 +10,31 @@
 <body>
   <header class="app-header">
     <div class="logo">
-      <span class="app-logo">ATMO</span>
+      <img src="./images/logo2.png" alt="ATMO Logo" class="app-logo">
     </div>
     <h1>Impact des émanations volcaniques</h1>
-    <div class="legend-toggle">
-      <button id="legend-button">Légende</button>
+    <div class="sign-up-toggle">
+      <button id="sign-up-button">S'inscrire</button>
     </div>
   </header>
+  
+  <!-- Section pour le formulaire d'inscription -->
+  <div id="sign-up-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>S'inscrire</h2>
+      <form id="sign-up-form">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" placeholder="Entrez votre nom" required>
+        
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+        
+        <button type="submit" class="form-submit">S'inscrire</button>
+      </form>
+      <button id="close-modal" class="close-modal">Fermer</button>
+    </div>
+  </div>
+  
   
   
 
@@ -37,17 +55,6 @@
     <!-- Carte -->
     <section class="map-section">
       <div id="map"></div>
-      
-      <div id="legend-menu" class="legend-menu hidden">
-        <h3>Légende</h3>
-        <ul>
-          <li id="legend-item-1">😊 Content : Données récentes (moins d'1h)</li>
-          <li id="legend-item-2">😑 Moyennement content : Données > 1 journée</li>
-          <li id="legend-item-3">😡 Pas content : Données > 1 semaine</li>
-        </ul>
-        <h3>S'inscrire</h3>
-        <button id="inscription">Click Here</button>
-      </div>
     </section>
 
     <!-- Dashboard -->
@@ -61,10 +68,22 @@
           <h3 id="station-name">Station</h3>
           <p id="station-lat">Latitude: </p>
           <p id="station-lng">Longitude: </p>
+          <p id="station-typologie">Typologie : </p>
           <p id="station-concentration">Concentration actuelle: </p>
+          <p id="station-S1">Seuil d'information : </p>
+          <p id="station-S2">Seuil de danger:  </p>
+          
+          <h3>Légende</h3>
+          <ul>
+            <li id="legend-item-1"> Content : Données récentes (moins d'1h)</li>
+            <li id="legend-item-2"> Moyennement content : Données > 1 journée</li>
+            <li id="legend-item-3"> Pas content : Données > 1 semaine</li>
+          </ul>
+          </div>
         </div>
       </div>
     </section>
+    
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
