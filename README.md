@@ -8,7 +8,7 @@ L’objectif de cette seconde édition est de continuer à fédérer une communa
 ## ESI'DEV
 
 Notre équipe a choisi de répondre au défi "Impact des éruptions volcaniques sur la qualité de l'air de la Réunion" porté par Atmo.
-Ce défi s'inscrit dans le context de surveillance face à la pollution de l'air, notamment à cause de la diffusion de gaz tels que le dioxyde de soufre notamment. En effet le piton de la Fournaise entre en éruption régulièrement ce qui peut provoquer de fort dégazages entainant des pics de pollutions en dioxyde de soufre. Cela impact la population de la Réunion et ce de façon globale.
+Ce défi s'inscrit dans le context de surveillance face à la pollution de l'air, notamment à cause de la diffusion de gaz tels que le dioxyde de soufre notamment. En effet le piton de la Fournaise entre en éruption régulièrement ce qui peut provoquer de fort dégazages entrainant des pics de pollutions en dioxyde de soufre. Cela impact la population de la Réunion et ce de façon globale.
 
 Il a pour objectif de mettre en place un outil qui permettrait de suivre en temps réel la concentration de dioxyde de soufre à l'aide de capteurs sur les différentes stations de mesures d'Atmo. Les données sont notamment récupérés via un portail open data arcgis.
 
