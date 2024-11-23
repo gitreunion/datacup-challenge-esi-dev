@@ -44,9 +44,6 @@ Créer une **page web interactive** avec :
 2. **Tableau de bord** :  
    - Consultation rapide des données en temps réel.
 
-### **But :**  
-Informer et permettre à la population d’adopter les bons gestes en cas d'alerte.
-
 ---
 
 ## **Technologie Utilisée**
@@ -70,20 +67,20 @@ Informer et permettre à la population d’adopter les bons gestes en cas d'aler
 
 ---
 
-## **Impact et Réutilisabilité**
+## **Pérenisation**
 
-- Documentation détaillée fournie
-- Respect des outils utilisés par le client (API, Maria DB)
-- Respect de la charte graphique
+- Respect des technologies maitrisées par le porteur de projet (API rest arcgis, Maria DB)
+- Respect de la charte graphique imposé par le porteur de projet
+- Facilité d'installation (venv, node_package)
+
 
 ---
 
 ## **Perspectives d'améliorations**
 
-- Menus déroulants
-  - Choix différents gaz
-  - Choix stations
-- Mise en place d'un serveur distant
+- Menus déroulants (choix de gaz et/ou choix de stations)
+- Déploiement sur un server ovh à terme
+- Dockerisation des services
 
 
 ---
