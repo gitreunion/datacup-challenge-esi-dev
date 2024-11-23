@@ -16,13 +16,13 @@ Il a pour objectif de mettre en place un outil qui permettrait de suivre en temp
 
 ## **Documentation**
 
-Notre solution répond au problème ... . Elle consiste à ... . Cette solution s'adresse à ... .
+Notre solution répond au problème en mettant à disposition un outil d'affichage dynamique des concentrations de dioxyde de soufre. Elle consiste à la mise en place d'une carte de la réunion sur une page web, qui affiche dans l'espace les points des stations de mesure d'atmo. A partir de ces points, il est possible pour un utilisateur de voir l'évolution de la concentration de dioxyde de soufre sur les 3 derniers jours. Cette solution s'adresse aux individus ayant des problèmes respiratoires, les sportifs mais aussi aux individus intéréssé par les niveaux de pollution de l'air .
 
 ### **Installation**
 
 [Guide d'installation](/INSTALL.md)
 
-### **Utilisation**
+### **Utilisation**S
 
 >TODO / **documentation d'utilisation de la solution**
 
