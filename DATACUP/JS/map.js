@@ -9,10 +9,34 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Variable pour stocker les graphiques actifs
 const activeCharts = {};
 
+
 // Gérer le formulaire "S'inscrire"
 const signUpButton = document.getElementById('sign-up-button');
 const signUpModal = document.getElementById('sign-up-modal');
 const closeModalButton = document.getElementById('close-modal');
+
+var greenIcon = L.icon({
+
+  iconUrl: 'images/vert.png',
+  iconSize:     [30, 50], // size of the icon
+  iconAnchor:   [25, 25], // point of the icon which will correspond to marker's location
+
+});
+var redIcon = L.icon({
+
+  iconUrl: 'images/rouge.png',
+  iconSize:     [38, 95], // size of the icon
+  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+
+});
+var orangeIcon = L.icon({
+
+  iconUrl: 'images/orange.png',
+  iconSize:     [38, 95], // size of the icon
+  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+
+});
+
 
 // Ouvrir le formulaire d'inscription
 signUpButton.addEventListener('click', () => {
@@ -57,7 +81,7 @@ fetch('http://localhost:3000/stations')
             map.removeLayer(layer);
           }
         });
-
+        
         // Filtrer les stations correspondant au gaz sélectionné
         const filteredStations = stations.filter(station => station.gas === selectedGas);
         console.log('Stations filtrées :', filteredStations);
@@ -65,7 +89,10 @@ fetch('http://localhost:3000/stations')
         // Ajouter les marqueurs pour les stations filtrées
         filteredStations.forEach(station => {
           if (station.lat && station.lng) {
-            const marker = L.marker([station.lng, station.lat])
+
+            iconChoose = greenIcon;
+
+            const marker = L.marker([station.lng, station.lat] , {icon: iconChoose})
               .addTo(map)
               // .bindPopup(popupContent);
 
@@ -170,7 +197,10 @@ function generateChart(canvasId, data) {
   }
   else if (yMax < 300) {
     document.getElementsByClassName('chart-container')[0].style.backgroundColor = 'white';
+
   }else{
     document.getElementsByClassName('chart-container')[0].style.backgroundColor = '#ffddb1';
+    
+
   }
 }
