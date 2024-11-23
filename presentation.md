@@ -43,6 +43,8 @@ Créer une **page web interactive** avec :
    - Affiche les concentrations de $SO_2$ par station.  
 2. **Tableau de bord** :  
    - Consultation rapide des données en temps réel.
+3. **Système d'alerte** :
+   - Envoie d'alertes par mail en fonction des seuils limites de concentration (300 et 500 μg/$m^3$)
 
 ---
 
