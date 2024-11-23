@@ -32,12 +32,15 @@
     <!-- Carte -->
     <section class="map-section">
       <div id="map"></div>
+      <div class="legend-toggle">
+        <button id="legend-button">Légende</button>
+      </div>
       <div id="legend-menu" class="legend-menu hidden">
         <h3>Légende</h3>
         <ul>
-          <li>😊 Content : Données récentes (moins d'1h)</li>
-          <li>😑 Moyennement content : Données > 1 journée</li>
-          <li>😡 Pas content : Données > 1 semaine</li>
+          <li id="legend-item-1">😊 Content : Données récentes (moins d'1h)</li>
+          <li id="legend-item-2">😑 Moyennement content : Données > 1 journée</li>
+          <li id="legend-item-3">😡 Pas content : Données > 1 semaine</li>
         </ul>
       </div>
     </section>

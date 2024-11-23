@@ -9,6 +9,14 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Variable pour stocker les graphiques actifs
 const activeCharts = {};
 
+// Gérer le menu déroulant de la légende
+const legendButton = document.getElementById('legend-button');
+const legendMenu = document.getElementById('legend-menu');
+
+legendButton.addEventListener('click', () => {
+  legendMenu.classList.toggle('visible');
+});
+
 // Charger les données des stations via l'API
 fetch('http://localhost:3000/stations')
   .then(response => response.json())
@@ -65,6 +73,11 @@ fetch('http://localhost:3000/stations')
                 })
                 .catch(error => console.error('Erreur lors du chargement des données du graphique :', error));
             });
+
+            // Ajouter un écouteur d'événement pour afficher le popup lors du clic sur un élément de la légende
+            document.getElementById('legend-item-1').addEventListener('click', () => {
+              marker.openPopup();
+            });
           }
         });
       });
@@ -98,6 +111,7 @@ function generateChart(canvasId, data) {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false, // Permet au canvas de s'adapter à son conteneur
       plugins: {
         legend: {
           display: true
