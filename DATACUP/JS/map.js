@@ -43,27 +43,20 @@ fetch('http://localhost:3000/stations')
         // Ajouter les marqueurs pour les stations filtrées
         filteredStations.forEach(station => {
           if (station.lat && station.lng) {
-            const popupContent = `
-              <div>
-                <h3>${station.name}</h3>
-                <p>Latitude: ${station.lat}</p>
-                <p>Longitude: ${station.lng}</p>
-                <p>Concentration actuelle : ${station.concentration}</p>
-              </div>
-            `;
-
             const marker = L.marker([station.lng, station.lat])
               .addTo(map)
-              .bindPopup(popupContent);
+              // .bindPopup(popupContent);
 
             // Charger les données pour le graphique au clic sur le marqueur
             marker.on('click', () => {
               // Mettre à jour les informations de la station dans le dashboard
               document.getElementById('station-name').textContent = station.name;
-              document.getElementById('station-lat').textContent = `Latitude: ${station.lat}`;
-              document.getElementById('station-lng').textContent = `Longitude: ${station.lng}`;
+              // document.getElementById('station-lat').textContent = `Latitude: ${station.lat}`;
+              // document.getElementById('station-lng').textContent = `Longitude: ${station.lng}`;
+              document.getElementById('station-typologie').textContent = `Typologie: ${station.typologie}`;
               document.getElementById('station-concentration').textContent = `Concentration actuelle: ${station.concentration}`;
-
+              document.getElementById('station-S1').textContent = `Seuil d'information : ${station.S1}`;
+              document.getElementById('station-S2').textContent = `Seuil de danger: ${station.S2}`;
               // Charger les données pour le graphique
               fetch(`http://localhost:3000/station-history?nom_station=${encodeURIComponent(station.name)}`)
                 .then(response => response.json())
