@@ -1,5 +1,5 @@
 ---
-marp: false
+marp: true
 theme: default
 paginate: true
 class: invert
@@ -37,31 +37,20 @@ style: |
 
 ## **Objectif**
 
-Créer une **page web interactive** avec :
+Créer un moyen pour surveiller les données :
 
-1. **Carte dynamique** :  
-   - Affiche les concentrations de $SO_2$ par station.  
-2. **Tableau de bord** :  
-   - Consultation rapide des données en temps réel.
-3. **Système d'alerte** :
-   - Envoie d'alertes par mail en fonction des seuils limites de concentration (300 et 500 μg/$m^3$)
-
----
-
-## **Technologie Utilisée**
-
-### **API ArcGIS**  
-- Récupère les données des stations en temps réel.  
-- Mises à jour toutes les heures.  
-
-**Lien API** :  
-[https://data-atmoreunion.opendata.arcgis.com](https://data-atmoreunion.opendata.arcgis.com)  
+1. **Affiche les concentrations de $SO_2$ par station.**
+   - Carte dynamique
+2. **Consultation rapide des données en temps réel.**
+   - Tableau de bord
+3. **Système d'alerte**
+   - Envoie d'alertes par mail en fonction des seuils limites de concentration (300 et 500 μg/$m^3$).
 
 ---
 
 ## **Architecture Technique**
 
-![Stack de la solution](./img/stack.png){width:30px, height:30px}
+![Stack de la solution](./img/Blank_diagram.png){width:30px, height:30px}
 
 ---
 
@@ -91,3 +80,13 @@ Créer une **page web interactive** avec :
 
 Des questions ?  
 
+---
+
+## **Technologie Utilisée**
+
+### **API ArcGIS**  
+- Récupère les données des stations en temps réel.  
+- Mises à jour toutes les heures.  
+
+**Lien API** :  
+[https://data-atmoreunion.opendata.arcgis.com](https://data-atmoreunion.opendata.arcgis.com)  
