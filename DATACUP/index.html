@@ -18,10 +18,15 @@
   <div class="app-layout">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2>Liste des points</h2>
-      <ul id="points-list">
-        <!-- Les sites seront générés dynamiquement -->
-      </ul>
+      <div id="side-panel">
+        <h2>Filtres</h2>
+        <ul id="gas-list">
+          <li><button>Dioxyde de soufre</button></li>
+          <!-- <li><button>Monoxyde d'azote</button></li> -->
+          <!-- <li><button>Particules PM10</button></li> -->
+          <!-- <li><button>Ozone (O3)</button></li> -->
+        </ul>
+      </div>
     </aside>
 
     <!-- Carte -->
@@ -41,15 +46,20 @@
     <section id="dashboard" class="dashboard">
       <h2>Dashboard</h2>
       <div class="dashboard-content">
+        <div class="chart-container">
+          <canvas id="dashboard-chart" width="20%" height="5%"></canvas>
+        </div>
         <div class="station-info">
           <h3 id="station-name">Station</h3>
-          <p id="station-status">Status: -</p>
+          <p id="station-lat">Latitude: </p>
+          <p id="station-lng">Longitude: </p>
+          <p id="station-concentration">Concentration actuelle: </p>
         </div>
       </div>
     </section>
-  </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
   <script src="./JS/map.js"></script>
 </body>
 </html>

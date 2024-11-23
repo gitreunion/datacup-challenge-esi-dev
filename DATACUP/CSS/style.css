@@ -106,6 +106,8 @@ body {
   grid-row: 2 / 3;
   display: flex;
   flex-direction: column;
+  height: 250px; /* Définir une hauteur fixe */
+ /* overflow-y: auto; /* Ajouter un défilement si le contenu dépasse la hauteur */
 }
 
 .dashboard h2 {
@@ -118,15 +120,38 @@ body {
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
+  flex: 1; /* Utiliser l'espace disponible */
 }
 
-.stat, .station-info {
+.chart-container {
+  flex: 2; /* Plus grand */
+  background-color: #3E5060;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.stat{
   background-color: #3E5060;
   padding: 15px;
   border-radius: 5px;
   text-align: center;
   min-width: 150px;
-  flex: 1;
+  flex: 1; */
+}
+
+.station-info {
+  flex: 1; /* Plus petit */
+  background-color: #3E5060;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 /* Menu déroulant légende */
