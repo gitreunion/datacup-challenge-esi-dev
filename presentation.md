@@ -15,7 +15,7 @@ style: |
     right: 1vw; /* Ajustez cette valeur pour positionner le logo */
     width: 15vw; /* Ajustez cette valeur pour la taille du logo */
     height: 25vw; /* Ajustez cette valeur pour la taille du logo */
-    background-image: url('./img/LOGO.png');
+    background-image: url('./img/LOGO_ATMO.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 1000; /* Assurez-vous que le logo est au-dessus de tout le contenu */
