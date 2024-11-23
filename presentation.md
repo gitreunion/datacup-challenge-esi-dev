@@ -50,7 +50,7 @@ Créer un moyen pour surveiller les données :
 
 ## **Architecture Technique**
 
-![Stack de la solution](./img/Blank_diagram.png){width:30px, height:30px}
+![Stack de la solution](./img/stack.png){width:30px, height:30px}
 
 ---
 
