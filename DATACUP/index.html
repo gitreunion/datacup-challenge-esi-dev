@@ -9,11 +9,16 @@
 </head>
 <body>
   <header class="app-header">
+    <div class="logo">
+      <span class="app-logo">ATMO</span>
+    </div>
     <h1>Impact des émanations volcaniques</h1>
     <div class="legend-toggle">
       <button id="legend-button">Légende</button>
     </div>
   </header>
+  
+  
 
   <div class="app-layout">
     <!-- Sidebar -->
@@ -21,7 +26,7 @@
       <div id="side-panel">
         <h2>Filtres</h2>
         <ul id="gas-list">
-          <li><button>Dioxyde de soufre</button></li>
+          <button>Dioxyde de soufre</button>
           <!-- <li><button>Monoxyde d'azote</button></li> -->
           <!-- <li><button>Particules PM10</button></li> -->
           <!-- <li><button>Ozone (O3)</button></li> -->
@@ -32,9 +37,7 @@
     <!-- Carte -->
     <section class="map-section">
       <div id="map"></div>
-      <div class="legend-toggle">
-        <button id="legend-button">Légende</button>
-      </div>
+      
       <div id="legend-menu" class="legend-menu hidden">
         <h3>Légende</h3>
         <ul>
@@ -42,12 +45,14 @@
           <li id="legend-item-2">😑 Moyennement content : Données > 1 journée</li>
           <li id="legend-item-3">😡 Pas content : Données > 1 semaine</li>
         </ul>
+        <h3>S'inscrire</h3>
+        <button id="inscription">Click Here</button>
       </div>
     </section>
 
     <!-- Dashboard -->
     <section id="dashboard" class="dashboard">
-      <h2>Dashboard</h2>
+      <h2>Tableau de bord</h2>
       <div class="dashboard-content">
         <div class="chart-container">
           <canvas id="dashboard-chart" width="20%" height="5%"></canvas>

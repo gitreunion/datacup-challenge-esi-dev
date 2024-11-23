@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #1B2430; /* Couleur sombre */
+  background-color: #1B2430;
   color: white;
   height: 100vh;
   display: flex;
@@ -12,31 +12,67 @@ body {
 /* En-tête */
 .app-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Espace entre les éléments */
   align-items: center;
   padding: 10px 20px;
   background-color: #2D3E50;
   color: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid #3E5060;
 }
 
+/* Logo */
+.logo {
+  flex: 0; /* Pas de flexibilité pour le logo */
+}
+
+.app-logo {
+  font-family: 'Cursive', sans-serif;
+  font-size: 2.2rem;
+  color: #FF4C4C;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+/* Titre principal */
 .app-header h1 {
+  flex: 1; /* Le texte prend toute la largeur restante */
+  text-align: center; /* Centre le texte horizontalement */
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* Bouton légende */
+.legend-toggle {
+  flex: 0; /* Pas de flexibilité pour le bouton */
 }
 
 .legend-toggle button {
-  background-color: #FF4C4C;
-  border: none;
-  padding: 10px;
+  background: linear-gradient(45deg, #FF6B6B, #FF4C4C);
+  border: 1px solid #D43F3F;
+  padding: 10px 15px;
   color: white;
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .legend-toggle button:hover {
-  background-color: #D43F3F;
+  background: linear-gradient(45deg, #FF4C4C, #FF1E1E);
+  transform: scale(1.05);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+
+/* Boutons actifs */
+#gas-list button.active {
+  background: linear-gradient(45deg, #FF4C4C, #FF6B6B);
+  border: 1px solid #FF4C4C;
+  color: #FFF;
 }
 
 /* Mise en page principale */
@@ -44,7 +80,9 @@ body {
   display: grid;
   grid-template-columns: 250px 1fr;
   grid-template-rows: 1fr auto;
-  height: 100%;
+  height: calc(100vh - 60px); /* Ajuste la hauteur pour inclure l'en-tête */
+  gap: 10px;
+  overflow: hidden; /* Évite les débordements */
 }
 
 /* Carte */
@@ -53,10 +91,14 @@ body {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
   overflow: hidden;
+  border: 2px solid #3E5060;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex; /* Permet à la carte de remplir l'espace */
 }
 
 #map {
-  width: 100%;
+  flex: 1; /* La carte occupe tout l'espace disponible */
   height: 100%;
 }
 
@@ -68,33 +110,38 @@ body {
   grid-row: 1 / 2;
   color: white;
   overflow-y: auto;
+  border: 2px solid #3E5060;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar h2 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #3E5060;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #3E5060;
   padding-bottom: 5px;
+  text-transform: uppercase;
+  color: #FF6B6B;
 }
 
-#points-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.point-item {
-  margin: 10px 0;
+#gas-list button {
+  display: block;
+  width: 100%;
   padding: 10px;
   background-color: #3E5060;
+  border: 1px solid #2D3E50;
+  color: white;
+  font-size: 1rem;
   border-radius: 5px;
+  margin: 5px 0;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   text-align: center;
-  transition: background-color 0.3s ease;
 }
 
-.point-item:hover {
+#gas-list button:hover {
   background-color: #FF4C4C;
+  transform: translateX(5px);
 }
 
 /* Tableau de bord */
@@ -106,13 +153,17 @@ body {
   grid-row: 2 / 3;
   display: flex;
   flex-direction: column;
-  height: 250px; /* Définir une hauteur fixe */
- /* overflow-y: auto; /* Ajouter un défilement si le contenu dépasse la hauteur */
+  height: 500px;
+  border: 2px solid #3E5060;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard h2 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin: 0 0 15px;
+  text-transform: uppercase;
+  color: #FF6B6B;
 }
 
 .dashboard-content {
@@ -120,17 +171,18 @@ body {
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
-  flex: 1; /* Utiliser l'espace disponible */
+  flex: 1;
 }
 
 .chart-container {
-  flex: 2; /* Plus grand */
+  flex: 2;
   background-color: #3E5060;
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #2D3E50;
 }
 
 .chart-container canvas {
@@ -138,50 +190,56 @@ body {
   height: 100% !important;
 }
 
-.stat{
-  background-color: #3E5060;
-  padding: 15px;
-  border-radius: 5px;
-  text-align: center;
-  min-width: 150px;
-  flex: 1; */
-}
-
 .station-info {
-  flex: 1; /* Plus petit */
+  flex: 1;
   background-color: #3E5060;
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 8px;
+  border: 1px solid #2D3E50;
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Menu déroulant légende */
+.station-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #FF6B6B;
+}
+
+/* Légende */
 .legend-menu {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: rgba(45, 62, 80, 0.9); /* Transparence */
+  background-color: rgba(45, 62, 80, 0.95);
   color: white;
   padding: 15px;
-  border-radius: 5px;
-  display: none; /* Masqué par défaut */
+  border-radius: 8px;
+  display: none;
   z-index: 1000;
+  border: 1px solid #3E5060;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .legend-menu.visible {
-  display: block; /* Afficher quand la classe visible est ajoutée */
+  display: block;
 }
 
 .legend-menu h3 {
   margin: 0 0 10px;
-}
-
-.legend-menu ul {
-  list-style: none;
-  padding: 0;
+  text-transform: uppercase;
+  color: #FF6B6B;
 }
 
 .legend-menu li {
   margin: 5px 0;
+  padding: 5px 10px;
+  background-color: #3E5060;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.legend-menu li:hover {
+  background-color: #FF4C4C;
 }
 
 /* Responsiveness */
@@ -189,10 +247,11 @@ body {
   .app-layout {
     display: flex;
     flex-direction: column;
+    gap: 10px;
   }
 
   .sidebar {
-    order: 1; /* La liste des points est placée en haut */
+    order: 1;
     width: 100%;
     display: flex;
     overflow-x: auto;
@@ -200,24 +259,17 @@ body {
     flex-wrap: wrap;
   }
 
-  #points-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .point-item {
+  #gas-list button {
     min-width: 120px;
     text-align: center;
   }
 
   .map-section {
-    order: 2; /* La carte est placée en dessous de la liste */
-    height: calc(100vh - 200px); /* Ajustez la hauteur pour compenser la liste */
+    order: 2;
+    height: calc(100vh - 300px); /* Ajuste pour éviter les débordements */
   }
 
-  #dashboard {
-    order: 3; /* Le dashboard reste en bas */
-    transition: transform 0.3s ease, height 0.3s ease;
+  .dashboard {
+    order: 3;
   }
 }
