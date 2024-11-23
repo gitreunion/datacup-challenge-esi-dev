@@ -165,4 +165,12 @@ function generateChart(canvasId, data) {
       }
     }
   });
+  if (yMax > 500) {
+    document.getElementsByClassName('chart-container')[0].style.backgroundColor = '#ffbfb1';
+  }
+  else if (yMax < 300) {
+    document.getElementsByClassName('chart-container')[0].style.backgroundColor = 'white';
+  }else{
+    document.getElementsByClassName('chart-container')[0].style.backgroundColor = '#ffddb1';
+  }
 }
