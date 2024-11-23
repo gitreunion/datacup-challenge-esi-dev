@@ -113,7 +113,11 @@ function generateChart(canvasId, data) {
   });
   
   const concentrations = data.map(entry => entry.concentration < 0 ? 0 : entry.concentration); // Remplacer les négatifs par 0
+  // Trouver la valeur maximale des concentrations
+  const maxConcentration = Math.max(...concentrations);
 
+  // Définir le maximum de l'axe Y : 10 par défaut, sinon la valeur maximale
+  const yMax = maxConcentration > 10 ? maxConcentration : 10;
   // Créer le nouveau graphique
   activeCharts[canvasId] = new Chart(document.getElementById(canvasId).getContext('2d'), {
     type: 'line',
@@ -148,9 +152,9 @@ function generateChart(canvasId, data) {
         y: {
           // beginAtZero: true,
           min: 0, // Minimum de l'axe des Y
-          max: 10, // Maximum de l'axe des Y
+          max: yMax + 0.1*yMax, // Maximum dynamique basé sur la concentration maximale
           ticks: {
-              stepSize: 1 // Incréments entre les valeurs de l'axe
+              stepSize: yMax > 10 ? Math.ceil(yMax / 10) : 1 // Ajuster l'incrément si la concentration dépasse 10
           },
           title: {
             display: true,
